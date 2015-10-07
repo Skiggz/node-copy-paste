@@ -6,10 +6,7 @@ var execSync = (function() {
 	if(child_process.execSync) { // Use native execSync if avaiable
 		return function(cmd) { return child_process.execSync(cmd); };
 	} else {
-		try { // Try using fallback package if available
-			var execSync = require("execSync");
-			return function(cmd) { return execSync.exec(cmd).stdout; };
-		} catch(e) {}
+		throw new Error('Please upgrade node.js. Your version does not support child_process execSync.');
 	}
 
 	return null;
